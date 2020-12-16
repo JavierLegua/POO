@@ -1,6 +1,7 @@
 package ClinicaMedica;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Persona {
 
@@ -29,7 +30,7 @@ public class Persona {
 	}
 
 	public Persona(String nombre, int edad, char sexo) {
-		this.nombre = nombre;
+		this.nombre = dimeNombre();
 		this.dni = generarDNI();
 		this.edad = edad;
 		this.sexo = comprobarSexo(sexo);
@@ -38,12 +39,12 @@ public class Persona {
 	}
 
 	public Persona(String nombre, String dni, int edad, char sexo, double peso, double altura) {
-		this.nombre = nombre;
+		this.nombre = dimeNombre();
 		this.dni = comprobarDNI(dni);
 		this.edad = edad;
 		this.sexo = comprobarSexo(sexo);
 		this.peso = peso;
-		this.altura = altura;
+		this.altura = dimeAltura();
 	}
 
 	public int calcularIMC() {
@@ -109,23 +110,47 @@ public class Persona {
 
 		boolean valido = false;
 		String letraValida, letraRecibida;
-		String numDni, aux;
-		
-		numDni=dni.substring(0,7);
-		letraRecibida=dni.substring(9);
-		
-		letraValida=generarLetraDNI(numDni);
-		
-		if(letraRecibida.equalsIgnoreCase(letraValida)) {
-			valido=true;
+		String numDni;
+
+		numDni = dni.substring(0, 8);
+		letraRecibida = dni.substring(9);
+
+		letraValida = generarLetraDNI(numDni);
+
+		if (letraRecibida.equalsIgnoreCase(letraValida)) {
+			valido = true;
 		}
 		if (valido) {
 			return dni;
 		} else {
-			//Dos opciones - 1º Corregir letra mal o
-			//2º generar un dni nuevo
-			return numDni+letraValida;
+			// Dos opciones - 1º Corregir letra mal o
+			// 2º generar un dni nuevo
+			return numDni + letraValida;
 		}
+	}
+
+	private String dimeNombre() {
+
+		Scanner leer = new Scanner(System.in);
+		System.out.println("dime el nombre");
+		this.nombre = leer.next();
+		return nombre;
+	}
+
+	// private String dimeSexo() {
+
+	// Scanner leer = new Scanner(System.in);
+	// System.out.println("dime tu genero");
+	// this.sexo = leer.next();
+	// return nombre;
+	// }
+
+	private double dimeAltura() {
+
+		Scanner leer = new Scanner(System.in);
+		System.out.println("dime tu altura en metros");
+		this.altura = leer.nextInt();
+		return altura;
 	}
 
 	@Override
