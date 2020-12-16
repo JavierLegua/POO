@@ -9,22 +9,24 @@ public class Recreativo {
 		//Guardar un nuevo juego
 		//Poner puntuación a un juego
 		//Ver todos los juegos
-		
 		return 0;
 	}
 	
 	public static void verTodosJuegos(Juego vJuegos[]) {
-		
+		for (int i = 0; i < vJuegos.length; i++) {
+			if (!vJuegos[i].equals(null)) {
+				System.out.println(vJuegos[i].toString());
+			}
+		}
 	}
 	
 	public static void guardarJuego(Juego vJuegos[]) {
-		//pedir los datos del juego con try-catch
-		Scanner leer=new Scanner(System.in);
-		//buscar posicion libre en el vector
+		//Pedir los datos del juego con try- cacth
+		
+		//Buscar posción libre en el vector
 		for (int i = 0; i < vJuegos.length; i++) {
-			if(vJuegos[i]==null){
-				vJuegos[i]=new Juego("juan");
-				break;
+			if (vJuegos[i] == null) {
+				vJuegos[i] = new Juego();
 			}
 		}
 	}
@@ -35,6 +37,7 @@ public class Recreativo {
 	
 	
 	public static void main(String[] args) {
+		
 		
 		
 		Juego vJuegos[] = new Juego[100];
