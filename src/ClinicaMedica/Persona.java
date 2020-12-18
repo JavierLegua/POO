@@ -8,18 +8,16 @@ public class Persona {
 	private String nombre;
 	private String dni;
 	private int edad;
-	private char sexo; // M Mujer - H Hombre
+	private char sexo; // H - Hombre ---- M - Mujer
 	private double peso;
-	private double altura; // En M
+	private double altura; // Altura en metros
 
-	// Constantes
-	private final char HOMBRE = 'H';
-	private final char MUJER = 'M';
+	private final char HOMBRE = 'H'; // Constante Hombre
+	private final char MUJER = 'M'; // Constante Mujer
 	private final int SOBREPESO = 1;
 	private final int PESOIDEAL = 0;
 	private final int BAJOPESO = -1;
 
-	// Constructores
 	public Persona() {
 		this.nombre = "";
 		this.dni = generarDNI();
@@ -30,7 +28,7 @@ public class Persona {
 	}
 
 	public Persona(String nombre, int edad, char sexo) {
-		this.nombre = dimeNombre();
+		this.nombre = nombre;
 		this.dni = generarDNI();
 		this.edad = edad;
 		this.sexo = comprobarSexo(sexo);
@@ -39,12 +37,12 @@ public class Persona {
 	}
 
 	public Persona(String nombre, String dni, int edad, char sexo, double peso, double altura) {
-		this.nombre = dimeNombre();
+		this.nombre = nombre;
 		this.dni = comprobarDNI(dni);
 		this.edad = edad;
 		this.sexo = comprobarSexo(sexo);
 		this.peso = peso;
-		this.altura = dimeAltura();
+		this.altura = altura;
 	}
 
 	public int calcularIMC() {
@@ -55,15 +53,13 @@ public class Persona {
 			return BAJOPESO;
 		} else if (peso < 24.9) {
 			return PESOIDEAL;
+
 		} else {
 			return SOBREPESO;
 		}
-
 	}
 
-	public boolean mayorEdad() {
-
-		// True=menor - false=mayor
+	public boolean esMayorEdad() {
 		if (edad < 18) {
 			return false;
 		} else {
@@ -72,7 +68,6 @@ public class Persona {
 	}
 
 	private char comprobarSexo(char sexo) {
-
 		if (sexo == HOMBRE || sexo == MUJER) {
 			return sexo;
 		} else {
@@ -80,34 +75,7 @@ public class Persona {
 		}
 	}
 
-	private String generarDNI() {
-
-		Random r = new Random();
-
-		String dni = "";
-
-		for (int i = 0; i < 8; i++) {
-			dni = dni + r.nextInt(10);
-		}
-		dni += "-" + generarLetraDNI(dni);
-		return dni;
-	}
-
-	private String generarLetraDNI(String dni) {
-		String letra = "";
-
-		int resto = 0;
-		int dniNum = Integer.valueOf(dni);
-		String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-
-		resto = dniNum % 23;
-		letra += letras.substring(resto, resto + 1);
-
-		return letra;
-	}
-
 	private String comprobarDNI(String dni) {
-
 		boolean valido = false;
 		String letraValida, letraRecibida;
 		String numDni;
@@ -120,37 +88,46 @@ public class Persona {
 		if (letraRecibida.equalsIgnoreCase(letraValida)) {
 			valido = true;
 		}
+
 		if (valido) {
 			return dni;
 		} else {
-			// Dos opciones - 1º Corregir letra mal o
-			// 2º generar un dni nuevo
-			return numDni + letraValida;
+			// Dos opciones - 1º Corregir la letra mal o
+			// 2º Generar un dni nuevo
+			return numDni + "-" + letraValida;
 		}
 	}
 
-	private String dimeNombre() {
-
-		Scanner leer = new Scanner(System.in);
-		System.out.println("dime el nombre");
-		this.nombre = leer.next();
-		return nombre;
+	// Comparamos objetos de persona
+	public boolean equals(Persona p) {
+		if (this.dni.equals(p.dni)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	// private String dimeSexo() {
+	private String generarDNI() {
+		Random r = new Random();
+		String dni = "";
+		for (int i = 0; i < 8; i++) {
+			dni += r.nextInt(10);
+		}
+		dni += "-" + generarLetraDNI(dni);
+		return dni;
+	}
 
-	// Scanner leer = new Scanner(System.in);
-	// System.out.println("dime tu genero");
-	// this.sexo = leer.next();
-	// return nombre;
-	// }
+	private String generarLetraDNI(String dni) {
+		String letra = "";
+		int resto = 0;
+		String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
 
-	private double dimeAltura() {
+		int dniNum = Integer.valueOf(dni);
+		resto = dniNum % 23;
 
-		Scanner leer = new Scanner(System.in);
-		System.out.println("dime tu altura en metros");
-		this.altura = leer.nextInt();
-		return altura;
+		letra += letras.substring(resto, resto + 1);
+
+		return letra;
 	}
 
 	@Override
@@ -161,9 +138,7 @@ public class Persona {
 		} else {
 			sexo = "Mujer";
 		}
-
-		return nombre + ", dni=" + dni + ", edad=" + edad + ", sexo=" + sexo + ", peso=" + peso + "kg, altura=" + altura
+		return nombre + " dni=" + dni + ", edad=" + edad + ", sexo=" + sexo + ", peso=" + peso + "kg, altura=" + altura
 				+ "m";
 	}
-
 }
