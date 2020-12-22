@@ -4,7 +4,7 @@ public class PrincipalContraseña {
 
 	public static void main(String[] args) {
 		
-		Contraseña c = new Contraseña();
+		Contraseña c = new Contraseña(50);
 		System.out.println(c.getContrasena());
         System.out.println(c.esFuerte());
 
