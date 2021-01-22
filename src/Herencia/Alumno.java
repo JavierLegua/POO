@@ -1,6 +1,6 @@
 package Herencia;
 
-public final class Alumno extends Personal{
+public final class Alumno extends Personal {
 	private String curso;
 
 	public Alumno(String nombre, int edad, String curso) {
@@ -18,7 +18,7 @@ public final class Alumno extends Personal{
 
 	@Override
 	public String toString() {
-		return " Alumno [curso=" + curso + "] " + super.toString();
+		return "Alumno [curso=" + curso + "] " + super.toString();
 	}
 
 }

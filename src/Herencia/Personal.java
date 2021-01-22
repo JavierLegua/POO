@@ -1,10 +1,10 @@
 package Herencia;
 
 public class Personal {
-	
+
 	protected String nombre;
 	protected int edad;
-	
+
 	public Personal(String nombre, int edad) {
 		super();
 		this.nombre = nombre;
@@ -31,5 +31,5 @@ public class Personal {
 	public String toString() {
 		return "nombre=" + nombre + ", edad=" + edad + "]";
 	}
-	
+
 }

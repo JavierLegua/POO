@@ -1,7 +1,7 @@
 package Herencia;
 
-public final class Profesor extends Personal{
-	
+public final class Profesor extends Personal {
+
 	private String asignatura;
 
 	public Profesor(String nombre, int edad, String asignatura) {
