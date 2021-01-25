@@ -2,45 +2,47 @@ package Mercadoña;
 
 public final class Perecedero extends Producto {
 	
-	protected static int DiasCaducar;
-	
-	public Perecedero(String nombre, double precio, int diasCaducar) {
+	private int dias;
+
+	public Perecedero(String nombre, float precio, int dias) {
 		super(nombre, precio);
-		DiasCaducar = diasCaducar;
+		this.dias = dias;
 	}
 
-	public int getDiasCaducar() {
-		return DiasCaducar;
+	public int getDias() {
+		return dias;
 	}
 
-	public void setDiasCaducar(int diasCaducar) {
-		DiasCaducar = diasCaducar;
-	}
-	
-	private static void Precio() {
-		switch (DiasCaducar) {
-		case 1: {
-			precio -= precio*0.4;
-			break;
-		}
-		case 2: {
-			precio -= precio*0.3;
-			break;
-		}
-		case 3: {
-			precio -= precio*0.5;
-			break;
-		}
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + DiasCaducar);
-		}
+	public void setDias(int dias) {
+		this.dias = dias;
 	}
 
 	@Override
 	public String toString() {
-		return "Perecedero [DiasCaducar=" + DiasCaducar + ", nombre=" + nombre + ", precio=" + precio + "]";
+		return super.toString() + " Perecedero [dias=" + dias + "]";
 	}
 
+	@Override
+	public float calcular(int cantidad) {
+	//	float precioFinal = super.calcular(cantidad);
+		float precioFinal = cantidad * precio;
+		switch (dias) {
+		case 1:
+			precioFinal /= 4;
+			break;
+
+		case 2:
+			precioFinal = precioFinal/3;
+			break;
+
+		case 3:
+			precioFinal = precioFinal/2;
+			break;
+
+		}
+		
+		return precioFinal;
+	}
 	
 	
 	
