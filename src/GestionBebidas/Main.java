@@ -7,7 +7,7 @@ public class Main {
 		Almacen c = new Almacen("Javier legua");
 		Azucarada z = new Azucarada("3", 4, 5, "coca cola", 2, true);
 		
-		System.out.println(z.toString());
+		System.out.println(c.calcularPrecioTotalMarca("Fanta Naranja"));
 		//Calcular precio estanteria funciona
 		//Calcular precio marca no funciona
 		//Calcular precio total funciona

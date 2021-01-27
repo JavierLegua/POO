@@ -31,34 +31,32 @@ public class Almacen {
 		}
 		return precioTotal;
 	}
-	//No funciona
-	public float calcularPrecioTotalMarca() {
+
+	public float calcularPrecioTotalMarca(String buscar) {
 		float precioTotal = 0;
 		
 		for (Bebidas[] bebidas : mEstanteria) {
 			for (Bebidas bebida : bebidas) {
-				if (bebida != null && bebida.getMarca().equals("Marca deseada.")) {
+				if (bebida != null && bebida.getMarca().equals(buscar)) {
 					precioTotal += bebida.getPrecio();
 				}
 			}
 		}
-		return precioTotal;
-	}
-	//Preguntar sobre este proceso
-	public float calcularPrecioEstanteria() {
-		float precioTotal = 0;
-		
-		for (Bebidas[] bebidas : mEstanteria) {
-			for (Bebidas bebida : bebidas) {
-				if (bebida != null) {
-					precioTotal += bebida.getPrecio();
-				}
-			}
-		}
-		
 		return precioTotal;
 	}
 	
+	public float calcularPrecioEstanteria(int estanteria) {
+		float precioTotal = 0;
+		
+		for (int i = 0; i < mEstanteria.length; i++) {
+			if (mEstanteria[i][estanteria] != null) {
+				precioTotal += mEstanteria[i][estanteria].getPrecio();
+			}
+		}
+		
+		return precioTotal;
+	}
+	//Corregir Mañana
 	public void añadirProducto() {
 		Azucarada d = new Azucarada("5", 4, 1.1, "Fanta", 56, true);
 		String codigo = d.getId();
