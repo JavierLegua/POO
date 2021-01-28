@@ -71,19 +71,16 @@ public class Almacen {
 				}
 			}
 		}
-		if (aux == false) {
-			for (Bebidas[] bebidas : mEstanteria) {
-				for (Bebidas bebida : bebidas) {
-					if (bebida == null) {
-						bebida = d;
-						System.out.println("Tu producto ha sido añadido.");
-						aux1 = true;
-						break;
-					}
-				}
-				if (aux1 == true) {
-					break;
-				}
+		if(aux == false) {
+		     for (int i = 0; i < mEstanteria.length; i++) {
+		         for (int j = 0; j < mEstanteria.length; j++) {
+		             if (mEstanteria[i][j] == null) {
+		                 mEstanteria[i][j] = d;
+		                 System.out.println("Producto añadido");
+		                 aux1 = true;
+		                 break;
+		             }
+		         }
 			}
 		}
 	}
