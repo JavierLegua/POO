@@ -41,9 +41,16 @@ public class Persona {
 		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", nip=" + nip + "]";
 	}
 
-	public String mostrar() {
+	public String mostrar(int longitudLinea) {
 		// Nombre, apellido ............ NIP
-		return null;
+		
+		int sumaPos = nombre.length() + apellido.length() + 6;
+		String puntos = "";
+		
+		for (int i = 0; i < (longitudLinea-sumaPos); i++) {
+			puntos += ".";
+		}
+		return (apellido + nombre + puntos + nip);
 	}
 	
 	
