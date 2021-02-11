@@ -60,7 +60,7 @@ public class IODatos {
 		for (int i = 0; i < aux.length(); i++) {
 			if (aux.substring(i,i+1).equals(",")) {
 				apellido = aux.substring(0, i);
-				nombre = aux.substring(i+2);
+				nombre = aux.substring(i+1);
 				break;
 			}
 		}
