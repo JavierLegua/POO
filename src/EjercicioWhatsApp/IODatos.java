@@ -15,7 +15,7 @@ public class IODatos {
 	private Scanner leer;
 	private FileWriter fw;
 	private PrintWriter pw;
-	
+
 	public IODatos() {
 		this.f = null;
 		this.fr = null;
@@ -23,12 +23,12 @@ public class IODatos {
 		this.fw = null;
 		this.pw = null;
 	}
-	
+
 	public Mensaje[] cargarDatos(String nombreFichero) {
-		
-		Mensaje[] vMensaje = new Mensaje[10];
+
+		Mensaje vMensaje[] = new Mensaje[10];
 		f = new File(nombreFichero);
-		
+
 		if (!f.exists()) {
 			try {
 				f.createNewFile();
@@ -36,16 +36,69 @@ public class IODatos {
 				e.printStackTrace();
 			}
 		}
+
 		try {
+
 			fr = new FileReader(f);
 			leer = new Scanner(fr);
+
+			int pos = 0;
+
+			while (leer.hasNext()) {
+				String linea = leer.nextLine();
+				vMensaje[pos] = new Mensaje(linea);
+				pos++;
+			}
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}while(leer.hasNext()) {
-			
+		} finally {
+			leer.close();
+
+			try {
+				fr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+
 		return vMensaje;
 	}
-	
-	
+
+	public void guardarDatos(Mensaje vMensaje[], String nombreFichero) {
+
+		f = new File(nombreFichero);
+
+		if (!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			fw = new FileWriter(f);
+			pw = new PrintWriter(fw);
+
+			for (Mensaje m : vMensaje) {
+				if (m != null) {
+					pw.println(m.mensajeWhatsapp());
+				}
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				fw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			pw.close();
+		}
+
+	}
+
 }
