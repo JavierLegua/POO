@@ -1,10 +1,10 @@
-package Ficheros;
+package LecturaAlumnos;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		IODatos.mostrar("alumno.txt", 50);
+		IODatos.mostrar("alumno.txt", 80);
 
 	}
 

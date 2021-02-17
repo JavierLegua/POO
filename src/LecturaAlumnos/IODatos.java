@@ -1,4 +1,4 @@
-package Ficheros;
+package LecturaAlumnos;
 
 import java.io.File;
 import java.io.FileNotFoundException;

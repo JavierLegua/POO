@@ -1,4 +1,4 @@
-package Ficheros;
+package LecturaAlumnos;
 
 public class Persona {
 	
