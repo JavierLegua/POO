@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class IODatos {
 
@@ -22,13 +24,11 @@ public class IODatos {
 			}
 		}
 
-		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo)) {
+		try (FileOutputStream fo = new FileOutputStream(f); ObjectOutputStream escribir = new ObjectOutputStream(fo)) {
 
 			for (Password p : datos) {
 				if (p != null) {
-					escribir.writeUTF(p.getUsuario());
-					escribir.writeInt(p.getPassword());
-					escribir.writeBoolean(p.isSegura());
+					escribir.writeObject(p);
 				}
 			}
 
@@ -100,22 +100,15 @@ public class IODatos {
 		}
 //Leemos el fichero y lo almacenamos en variables y despues en el vector
 		try (FileInputStream fi = new FileInputStream(f);
-				DataInputStream leer = new DataInputStream(fi)){
+				ObjectInputStream leer = new ObjectInputStream(fi)){
 			
-			while(true) {
-				usuario = leer.readUTF();
-				password = leer.readInt();
-				segura = leer.readBoolean();
-				
-				Password p = new Password(usuario, password, segura);
-				
-				vector2[cont] = p;
-				cont++;
-			}
+			vector2[cont] = (Password) leer.readObject();
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
+			System.out.println("Has terminado de leer el fichero");
+		} catch (ClassNotFoundException e) {
 			System.out.println("Has terminado de leer el fichero");
 		}
 		
