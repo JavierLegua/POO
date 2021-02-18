@@ -31,5 +31,21 @@ public class Main {
 		
 		return suma;
 	}
+	
+	private static int contarClientes(Ventas[] vVentas, String cliente) {
+		
+		int total = 0;
+		String clientes;
+		
+		for (Ventas ventas : vVentas) {
+			if (ventas.getCliente().equalsIgnoreCase(cliente)) {
+				total++;
+			}
+		}
+		
+		
+		
+		return total;
+	}
 
 }
