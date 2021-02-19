@@ -6,7 +6,7 @@ public class Ventas {
 	int codProducto;
 	int uniVendidas;
 	double precio;
-	
+
 	public Ventas(String cliente, int codProducto, int uniVendidas, double precio) {
 		this.cliente = cliente;
 		this.codProducto = codProducto;
@@ -51,7 +51,5 @@ public class Ventas {
 		return "Ventas [cliente=" + cliente + ", codProducto=" + codProducto + ", uniVendidas=" + uniVendidas
 				+ ", precio=" + precio + "]";
 	}
-	
-	
-	
+
 }
